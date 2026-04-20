@@ -25,7 +25,7 @@ jobs:
 
     - name: Login to Docker Hub
       run: |
-        echo "${{ secrets.DOCKERC_OMPOSE_SAGAR_PASSWORD }}" | docker login -u "${{ secrets.DOCKERC_OMPOSE_SAGAR_USERNAME }}" --password-stdin
+        echo "${{ secrets.DOCKER_COMPOSE_SAGAR_PASSWORD }}" | docker login -u "${{ secrets.DOCKERC_OMPOSE_SAGAR_USERNAME }}" --password-stdin
 
     - name: Tag image
       run: docker tag flask-app ${{ secrets.DOCKERC_OMPOSE_SAGAR_USERNAME }}/flask-app:latest
