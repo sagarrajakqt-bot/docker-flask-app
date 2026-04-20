@@ -28,7 +28,7 @@ jobs:
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Tag image
-      run: docker tag flask-app ${{ secrets.DOCKERC_OMPOSE_SAGAR_USERNAME }}/flask-app:latest
+      run: docker tag flask-app ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
     - name: Push image
-      run: docker push ${{ secrets.DOCKERC_OMPOSE_SAGAR_USERNAME }}/flask-app:latest
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
