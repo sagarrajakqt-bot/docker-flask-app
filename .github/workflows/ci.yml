@@ -24,10 +24,11 @@ jobs:
         curl http://localhost:5000
 
     - name: Login to Docker Hub
-run: echo "${{ DOCKERC_OMPOSE_SAGAR }}" | docker login -u "${{ secrets.DOCKERC_OMPOSE_SAGAR }}" --password-stdin
+      run: |
+        echo "${{ secrets.DOCKERC_OMPOSE_SAGAR_PASSWORD }}" | docker login -u "${{ secrets.DOCKERC_OMPOSE_SAGAR_USERNAME }}" --password-stdin
 
-- name: Tag image
-run: docker tag flask-app ${{ secrets.DOCKERC_OMPOSE_SAGAR }}/flask-app:latest
+    - name: Tag image
+      run: docker tag flask-app ${{ secrets.DOCKERC_OMPOSE_SAGAR_USERNAME }}/flask-app:latest
 
-- name: Push image
-run: docker push ${{ secrets.DOCKERC_OMPOSE_SAGAR }}/flask-app:latest
+    - name: Push image
+      run: docker push ${{ secrets.DOCKERC_OMPOSE_SAGAR_USERNAME }}/flask-app:latest
