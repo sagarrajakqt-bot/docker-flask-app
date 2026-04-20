@@ -16,7 +16,8 @@ jobs:
       run: docker build -t flask-app .
 
     - name: Run container
-      run: docker run -d -p 5000:5000 flask-app
+      run: |
+        docker run -d -p 5000:5000 --name flask-container flask-app
 
     - name: Test container
       run: |
@@ -25,10 +26,10 @@ jobs:
 
     - name: Login to Docker Hub
       run: |
-        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        echo "${{ secrets.DOCKER_COMPOSE_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_COMPOSE_USERNAME }}" --password-stdin
 
     - name: Tag image
-      run: docker tag flask-app ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+      run: docker tag flask-app ${{ secrets.DOCKER_COMPOSE_USERNAME }}/flask-app:latest
 
     - name: Push image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+      run: docker push ${{ secrets.DOCKER_COMPOSE_USERNAME }}/flask-app:latest
