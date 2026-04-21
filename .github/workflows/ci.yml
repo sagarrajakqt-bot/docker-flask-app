@@ -19,9 +19,12 @@ jobs:
       run: |
         docker run -d -p 5000:5000 --name flask-container flask-app
 
+    - name: Check container logs
+      run: docker logs flask-container
+
     - name: Test container
       run: |
-        sleep 5
+        sleep 10
         curl http://localhost:5000
 
     - name: Login to Docker Hub
